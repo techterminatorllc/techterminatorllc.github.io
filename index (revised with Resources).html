@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TechnicalTerminator — Cyber Insurance Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --accent: #c8f55a;
+    --accent-dim: rgba(200,245,90,0.12);
+    --accent-mid: rgba(200,245,90,0.25);
+    --white: #f5f5f0;
+    --muted: #888;
+    --serif: 'DM Serif Display', serif;
+    --display: 'Bebas Neue', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(ellipse, rgba(200,245,90,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--display); font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.92; letter-spacing: 0.01em;
+    max-width: 800px;
+  }
+  .hero h1 em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+  .hero-sub {
+    max-width: 560px; margin-top: 2rem; font-size: 1rem;
+    color: rgba(245,245,240,0.65); line-height: 1.7;
+  }
+  .hero-sub strong { color: var(--white); }
+  .hero-cta { margin-top: 2.5rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--accent); color: var(--black);
+    background: var(--accent); transition: all 0.2s;
+  }
+  .btn:hover { background: transparent; color: var(--accent); }
+  .btn-ghost {
+    background: transparent; color: var(--white); border-color: var(--border);
+    margin-left: 1rem;
+  }
+  .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 3rem; border-top: 1px solid var(--border);
+  }
+  .stat-val {
+    font-family: var(--display); font-size: 2.5rem; color: var(--accent);
+  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.5rem;
+  }
+  h2 em { font-family: var(--serif); font-style: italic; }
+
+  /* ── EDGE STRIP ── */
+  .edge { background: var(--accent); color: var(--black); padding: 2rem 3rem; }
+  .edge-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .edge-items { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+  .edge-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--black);
+  }
+  .edge-item::before { content: '✓'; font-weight: 700; }
+
+  /* ── WHY MATTERS ── */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
+  .why-card {
+    background: var(--off-black); padding: 2.5rem;
+    transition: background 0.2s;
+  }
+  .why-card:hover { background: var(--card); }
+  .why-num {
+    font-family: var(--display); font-size: 3.5rem; color: var(--border);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .why-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .why-card p { font-size: 0.875rem; color: rgba(245,245,240,0.6); line-height: 1.7; }
+
+  /* ── TIERS ── */
+  .tiers { background: var(--off-black); }
+  .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+  .tier-card {
+    background: var(--card); padding: 2.5rem; position: relative;
+    transition: background 0.2s;
+  }
+  .tier-card:hover { background: #1c1c1c; }
+  .tier-card.featured { background: var(--accent-dim); border: 1px solid rgba(200,245,90,0.3); }
+  .tier-tag {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .tier-card h3 { font-family: var(--display); font-size: 1.8rem; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+  .tier-price { font-family: var(--display); font-size: 3rem; color: var(--accent); line-height: 1; }
+  .tier-period { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+  .tier-desc { font-size: 0.8rem; color: var(--muted); margin: 1rem 0 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .tier-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+  .tier-list li { font-size: 0.82rem; color: rgba(245,245,240,0.7); padding-left: 1.2rem; position: relative; }
+  .tier-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ── ADD-ONS ── */
+  .addon-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 2rem; }
+  .addon { background: var(--card); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .addon:hover { background: #1c1c1c; }
+  .addon-name { font-size: 0.9rem; font-weight: 500; }
+  .addon-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+  .addon-price { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); white-space: nowrap; }
+
+  /* ── PROCESS ── */
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+  .step { background: var(--off-black); padding: 2rem; }
+  .step-num { font-family: var(--display); font-size: 4rem; color: var(--border); line-height: 1; }
+  .step h3 { font-size: 1rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+  .step p { font-size: 0.82rem; color: rgba(245,245,240,0.6); line-height: 1.6; }
+
+  /* ── WHO ── */
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+  .who-card { background: var(--card); padding: 2rem; transition: background 0.2s; }
+  .who-card:hover { background: #1c1c1c; }
+  .who-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .who-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .who-card p { font-size: 0.82rem; color: rgba(245,245,240,0.6); line-height: 1.6; }
+
+  /* ── RESOURCES TAB ── */
+  .resources { background: var(--black); }
+  .resources-intro { max-width: 640px; margin-bottom: 3rem; }
+  .resources-intro p { font-size: 0.95rem; color: rgba(245,245,240,0.6); line-height: 1.7; margin-top: 1rem; }
+
+  .doc-tabs {
+    display: flex; gap: 0; border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem; overflow-x: auto;
+  }
+  .doc-tab {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.75rem 1.5rem;
+    color: var(--muted); cursor: pointer; border: none;
+    background: transparent; border-bottom: 2px solid transparent;
+    margin-bottom: -1px; white-space: nowrap; transition: all 0.2s;
+  }
+  .doc-tab:hover { color: var(--white); }
+  .doc-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .doc-panel { display: none; }
+  .doc-panel.active { display: block; }
+
+  .doc-card {
+    background: var(--card); border: 1px solid var(--border);
+    max-width: 900px;
+  }
+  .doc-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 2rem 2.5rem; border-bottom: 1px solid var(--border);
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .doc-meta { display: flex; flex-direction: column; gap: 0.4rem; }
+  .doc-badge {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.2rem 0.6rem;
+    background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(200,245,90,0.3);
+  }
+  .doc-title { font-family: var(--display); font-size: 1.6rem; letter-spacing: 0.04em; }
+  .doc-client { font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+  .doc-version {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    text-align: right; white-space: nowrap;
+  }
+  .doc-body { padding: 2.5rem; }
+
+  .doc-section { margin-bottom: 2.5rem; }
+  .doc-section:last-child { margin-bottom: 0; }
+  .doc-section-title {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+  .doc-section p {
+    font-size: 0.875rem; color: rgba(245,245,240,0.75); line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+  .doc-section p:last-child { margin-bottom: 0; }
+  .doc-section strong { color: var(--white); }
+
+  .doc-table {
+    width: 100%; border-collapse: collapse; font-size: 0.82rem;
+    margin-top: 0.5rem;
+  }
+  .doc-table th {
+    background: var(--off-black); padding: 0.6rem 1rem;
+    text-align: left; font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .doc-table td {
+    padding: 0.65rem 1rem; border: 1px solid var(--border);
+    color: rgba(245,245,240,0.75); vertical-align: top; line-height: 1.5;
+  }
+  .doc-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .risk-critical { color: #ff5f5f; font-weight: 600; }
+  .risk-high { color: #ffaa3c; font-weight: 600; }
+  .risk-medium { color: #ffd166; font-weight: 500; }
+  .risk-low { color: var(--accent); font-weight: 500; }
+
+  .doc-ol { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .doc-ol li {
+    display: flex; gap: 1rem; align-items: flex-start;
+    font-size: 0.875rem; color: rgba(245,245,240,0.75); line-height: 1.65;
+  }
+  .doc-ol li .step-n {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+    min-width: 1.8rem; padding-top: 0.05rem;
+  }
+
+  .doc-ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .doc-ul li {
+    font-size: 0.875rem; color: rgba(245,245,240,0.75);
+    padding-left: 1.2rem; position: relative; line-height: 1.65;
+  }
+  .doc-ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+  .doc-highlight {
+    background: var(--accent-dim); border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem; font-size: 0.85rem;
+    color: rgba(245,245,240,0.8); line-height: 1.7; margin: 1rem 0;
+  }
+
+  .doc-watermark-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 2.5rem; background: rgba(200,245,90,0.05);
+    border-top: 1px solid rgba(200,245,90,0.15);
+    font-family: var(--mono); font-size: 0.65rem; color: rgba(200,245,90,0.5);
+    letter-spacing: 0.1em;
+  }
+
+  .resource-cta {
+    margin-top: 3rem; padding: 2.5rem; background: var(--accent-dim);
+    border: 1px solid rgba(200,245,90,0.2); max-width: 900px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .resource-cta p {
+    font-size: 0.9rem; color: rgba(245,245,240,0.7); max-width: 520px; line-height: 1.65;
+  }
+  .resource-cta strong { color: var(--white); display: block; margin-bottom: 0.4rem; font-size: 1rem; }
+
+  /* ── CTA ── */
+  .cta-section { background: var(--off-black); text-align: center; }
+  .cta-section h2 { font-size: clamp(2rem, 5vw, 4rem); }
+  .cta-section p { color: var(--muted); max-width: 500px; margin: 1rem auto 2.5rem; font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 3rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    letter-spacing: 0.08em; flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .why-grid, .tier-grid, .process-steps, .who-grid, .addon-grid { grid-template-columns: 1fr; }
+    .doc-header { flex-direction: column; }
+    .doc-body { padding: 1.5rem; }
+    .resource-cta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">TechnicalTerminator</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#who">Who</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="mailto:sadawson35@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">GRC + Cyber Insurance Readiness · 2026</p>
+  <h1>Cyber Insurance<br><em>Readiness.</em></h1>
+  <p class="hero-sub">
+    Most businesses buy cyber insurance and <strong>hope for the best.</strong>
+    We help you actually qualify, reduce premiums, and survive a claim —
+    using a perspective no one else brings: <strong>years inside the insurance industry.</strong>
+  </p>
+  <div class="hero-cta">
+    <a href="mailto:sadawson35@gmail.com" class="btn">Book a Free Discovery Call</a>
+    <a href="#resources" class="btn btn-ghost">View Sample Docs</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-val">60%</div>
+      <div class="stat-label">of SMBs denied claims<br>due to policy gaps</div>
+    </div>
+    <div>
+      <div class="stat-val">3+</div>
+      <div class="stat-label">years inside<br>insurance claims</div>
+    </div>
+    <div>
+      <div class="stat-val">SEC+</div>
+      <div class="stat-label">Certified &amp;<br>GRC Focused</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDGE -->
+<div class="edge">
+  <div class="edge-inner">
+    <div class="edge-items">
+      <div class="edge-item">Insurance Claims Expertise</div>
+      <div class="edge-item">Security+ Certified</div>
+      <div class="edge-item">NIST &amp; ISO Frameworks</div>
+      <div class="edge-item">Policy &amp; Documentation Expertise</div>
+      <div class="edge-item">SMB-Focused Pricing</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY MATTERS -->
+<section id="services">
+  <p class="section-label">Why It Matters</p>
+  <h2>Your Insurer Knows Exactly<br><em>What to Look For</em></h2>
+  <p style="max-width:560px; color:rgba(245,245,240,0.6); font-size:0.95rem;">
+    When a claim hits, adjusters investigate your controls before they pay out.
+    I was one of those adjusters. Now I help you prepare for that moment — before it happens.
+  </p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <h3>I Know How Claims Get Denied</h3>
+      <p>After 3+ years evaluating claims at a large insurance carrier, I know the exact gaps insurers use to reduce or deny payouts. I help you close those gaps before you ever need to file.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <h3>Policies That Actually Satisfy Underwriters</h3>
+      <p>Insurance underwriters have a checklist. Most consultants don't know what's on it. I do — and I write your policies to meet it, aligned to NIST CSF and CIS Controls.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <h3>Plain-Language Documentation</h3>
+      <p>You'll receive documentation that makes sense to your team, your insurer, and an auditor. No jargon walls. Clear, actionable, professional.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <h3>Built for Small &amp; Mid-Size Businesses</h3>
+      <p>Enterprise GRC consultants charge enterprise prices. Your 10–50 person company needs a right-sized solution — practical controls, realistic timelines, and affordable fees.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="tiers">
+  <p class="section-label">Service Tiers</p>
+  <h2>Clear Pricing.<br><em>No Surprises.</em></h2>
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-tag">Tier 01</div>
+      <h3>Readiness Audit</h3>
+      <div class="tier-price">$500</div>
+      <div class="tier-period">One-time · Delivered in 5–7 business days</div>
+      <p class="tier-desc">A snapshot of where you stand. Perfect if you're applying for cyber insurance for the first time or want to understand your exposure before renewal.</p>
+      <ul class="tier-list">
+        <li>1-hour discovery call + intake questionnaire</li>
+        <li>Gap analysis vs. common underwriter requirements</li>
+        <li>Review of 3–5 existing policies (if available)</li>
+        <li>Written findings report with risk ratings</li>
+        <li>Prioritized action list (quick wins vs. long-term)</li>
+        <li>30-min debrief call to walk through results</li>
+      </ul>
+      <a href="mailto:sadawson35@gmail.com?subject=Readiness Audit Inquiry" class="btn btn-ghost">Get Started</a>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-tag">Tier 02 · Most Popular</div>
+      <h3>Readiness Package</h3>
+      <div class="tier-price">$1,500</div>
+      <div class="tier-period">One-time · Delivered in 2–3 weeks</div>
+      <p class="tier-desc">The full solution for businesses preparing for their first cyber insurance application or struggling with renewal requirements.</p>
+      <ul class="tier-list">
+        <li>Everything in Tier 1</li>
+        <li>Full risk assessment (people, process, technology)</li>
+        <li>3 core policy documents written from scratch (AUP, IRP, Data Handling)</li>
+        <li>Vendor/third-party risk checklist</li>
+        <li>Employee security awareness 1-pager</li>
+        <li>Insurance application support (review + coaching)</li>
+        <li>Final executive summary formatted for your insurer</li>
+        <li>2 follow-up email Q&amp;A sessions (30 days)</li>
+      </ul>
+      <a href="mailto:sadawson35@gmail.com?subject=Readiness Package Inquiry" class="btn">Get Started</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-tag">Tier 03</div>
+      <h3>Retainer</h3>
+      <div class="tier-price">$800<span style="font-size:1.5rem">/mo</span></div>
+      <div class="tier-period">Monthly · 3-month minimum</div>
+      <p class="tier-desc">Ongoing GRC support for businesses that want to maintain compliance, stay audit-ready, and have a consultant in their corner year-round.</p>
+      <ul class="tier-list">
+        <li>Monthly compliance check-in (1 hr)</li>
+        <li>Policy review &amp; updates as regulations change</li>
+        <li>Vendor risk reviews (up to 2/month)</li>
+        <li>Incident response plan maintenance</li>
+        <li>AI governance policy updates</li>
+        <li>Priority email support (48-hr response)</li>
+        <li>Annual cyber insurance renewal prep included</li>
+      </ul>
+      <a href="mailto:sadawson35@gmail.com?subject=Retainer Inquiry" class="btn btn-ghost">Get Started</a>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <p class="section-label">Add-On Services</p>
+    <div class="addon-grid">
+      <div class="addon">
+        <div><div class="addon-name">Additional Policy Document</div><div class="addon-sub">BCP, BYOD, Remote Work, Password, Access Control, and more</div></div>
+        <div class="addon-price">$200 / policy</div>
+      </div>
+      <div class="addon">
+        <div><div class="addon-name">Security Awareness Training</div><div class="addon-sub">Custom 1-hr employee session (virtual) with materials</div></div>
+        <div class="addon-price">$350 / session</div>
+      </div>
+      <div class="addon">
+        <div><div class="addon-name">AI Use Policy Package</div><div class="addon-sub">AI governance policy + employee guidance doc tailored to your tools</div></div>
+        <div class="addon-price">$300 one-time</div>
+      </div>
+      <div class="addon">
+        <div><div class="addon-name">Claim Denial Review</div><div class="addon-sub">Had a claim denied or reduced? I'll review and identify what to fix</div></div>
+        <div class="addon-price">$400 one-time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <p class="section-label">How It Works</p>
+  <h2>From Exposed<br><em>to Protected</em></h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Discovery Call</h3>
+      <p>Free 30-min call to understand your business, current tools, insurance status, and goals. No pressure, no pitch — just clarity on fit.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Assessment</h3>
+      <p>Intake questionnaire + review of any existing policies or documentation. I identify gaps against underwriter benchmarks and compliance frameworks.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Deliverables</h3>
+      <p>You receive your written report, policy documents, and action plan — formatted for your insurer, your team, and future audits.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Debrief + Support</h3>
+      <p>We walk through findings together. You leave with confidence, clarity, and a clear path forward — not a stack of documents you don't understand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section id="who">
+  <p class="section-label">Who This Is For</p>
+  <h2>Your Business<br><em>Qualifies If…</em></h2>
+  <div class="who-grid">
+    <div class="who-card"><div class="who-icon">🏥</div><h3>Healthcare &amp; Dental Practices</h3><p>Handling patient data under HIPAA with limited IT staff and growing cyber insurance requirements.</p></div>
+    <div class="who-card"><div class="who-icon">⚖️</div><h3>Law Firms &amp; Legal Services</h3><p>Managing sensitive client data, court filings, and confidential communications with high liability exposure.</p></div>
+    <div class="who-card"><div class="who-icon">🏗️</div><h3>Contractors &amp; Construction</h3><p>Increasingly required by clients and insurers to demonstrate cybersecurity controls before contract award.</p></div>
+    <div class="who-card"><div class="who-icon">🛒</div><h3>E-Commerce &amp; Retail</h3><p>Processing payment data and customer PII with vendor-heavy operations and growing compliance demands.</p></div>
+    <div class="who-card"><div class="who-icon">🚀</div><h3>Startups &amp; Early-Stage Companies</h3><p>Building compliance and security programs from scratch before enterprise clients or investors require proof.</p></div>
+    <div class="who-card"><div class="who-icon">🏢</div><h3>MSPs &amp; IT Service Providers</h3><p>Need to offer or validate GRC services to their own clients without a dedicated compliance resource.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- RESOURCES -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="resources" class="resources">
+  <p class="section-label">Resources</p>
+  <h2>Sample<br><em>Deliverables</em></h2>
+  <div class="resources-intro">
+    <p>Every client engagement produces clear, professional documentation built to satisfy underwriters, auditors, and your own team. Below are representative excerpts from the types of deliverables you'll receive — so you know exactly what working with TechnicalTerminator looks like.</p>
+    <p style="margin-top:0.75rem; font-size:0.8rem; color:rgba(245,245,240,0.4);">* All company names, personnel, and data below are illustrative examples only.</p>
+  </div>
+
+  <div class="doc-tabs">
+    <button class="doc-tab active" onclick="showDoc('gap')">Gap Analysis Report</button>
+    <button class="doc-tab" onclick="showDoc('irp')">Incident Response Plan</button>
+    <button class="doc-tab" onclick="showDoc('aup')">Acceptable Use Policy</button>
+    <button class="doc-tab" onclick="showDoc('exec')">Executive Summary</button>
+  </div>
+
+  <!-- ── DOC 1: GAP ANALYSIS ── -->
+  <div class="doc-panel active" id="doc-gap">
+    <div class="doc-card">
+      <div class="doc-header">
+        <div class="doc-meta">
+          <span class="doc-badge">Sample · Tier 1 Deliverable</span>
+          <div class="doc-title">Cyber Insurance Readiness Gap Analysis</div>
+          <div class="doc-client">CLIENT: Acme Dental Associates · Prepared by: TechnicalTerminator LLC</div>
+        </div>
+        <div class="doc-version">
+          Version 1.0<br>
+          Date: March 2026<br>
+          Classification: Confidential
+        </div>
+      </div>
+      <div class="doc-body">
+
+        <div class="doc-section">
+          <div class="doc-section-title">Executive Overview</div>
+          <p>This report presents findings from TechnicalTerminator LLC's cyber insurance readiness assessment of Acme Dental Associates ("Client"), a 4-location dental practice in the Dallas–Fort Worth area with approximately 42 employees. The assessment evaluated the Client's current cybersecurity posture against common underwriter benchmarks used by top-tier cyber insurers, including requirements aligned to the <strong>NIST Cybersecurity Framework (CSF 2.0)</strong> and <strong>CIS Controls v8</strong>.</p>
+          <p>The assessment was conducted via intake questionnaire, a structured 60-minute discovery call, and review of three existing policy documents provided by the Client. No penetration testing or technical scanning was performed as part of this engagement.</p>
+          <div class="doc-highlight">
+            <strong>Overall Readiness Score: 47 / 100</strong> — The Client demonstrates several foundational security practices but has material gaps in documentation, access control, and incident preparedness that create meaningful risk of claim denial or premium surcharge.
+          </div>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Findings Summary</div>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Control Area</th>
+                <th>Current State</th>
+                <th>Risk Level</th>
+                <th>Underwriter Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Multi-Factor Authentication (MFA)</td>
+                <td>Not deployed on email or EHR system</td>
+                <td><span class="risk-critical">Critical</span></td>
+                <td>Likely declination or exclusion</td>
+              </tr>
+              <tr>
+                <td>Incident Response Plan</td>
+                <td>No formal plan exists</td>
+                <td><span class="risk-critical">Critical</span></td>
+                <td>Required by most carriers; gap = higher premium</td>
+              </tr>
+              <tr>
+                <td>Privileged Access Management</td>
+                <td>Shared admin credentials in use</td>
+                <td><span class="risk-high">High</span></td>
+                <td>Exclusion clause risk for credential-based breach</td>
+              </tr>
+              <tr>
+                <td>Backup &amp; Recovery</td>
+                <td>Daily backups exist; untested recovery</td>
+                <td><span class="risk-high">High</span></td>
+                <td>Ransomware riders may not apply without tested recovery</td>
+              </tr>
+              <tr>
+                <td>Employee Security Training</td>
+                <td>No formal training; ad hoc reminders</td>
+                <td><span class="risk-medium">Medium</span></td>
+                <td>Training attestation required by 70%+ of carriers</td>
+              </tr>
+              <tr>
+                <td>Vendor Risk Management</td>
+                <td>No vendor inventory or BAA review process</td>
+                <td><span class="risk-medium">Medium</span></td>
+                <td>Third-party liability exposure; coverage may be limited</td>
+              </tr>
+              <tr>
+                <td>Endpoint Protection</td>
+                <td>Antivirus on workstations; EDR absent</td>
+                <td><span class="risk-medium">Medium</span></td>
+                <td>Acceptable for current coverage tier</td>
+              </tr>
+              <tr>
+                <td>Acceptable Use Policy</td>
+                <td>Informal; not signed by staff</td>
+                <td><span class="risk-low">Low</span></td>
+                <td>Required for regulatory compliance; minor insurer impact</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Priority Action Plan</div>
+          <p><strong>Immediate (0–30 days) — Address before next renewal application:</strong></p>
+          <ol class="doc-ol">
+            <li><span class="step-n">01.</span>Enable MFA on Microsoft 365 (email) and Dentrix/Eaglesoft EHR system. Microsoft Authenticator or Duo Security are recommended. This single control addresses the most common basis for claim denial in the dental sector.</li>
+            <li><span class="step-n">02.</span>Document and execute a backup restoration test. Record the date, scope, and result. Retain this record for at least 12 months.</li>
+            <li><span class="step-n">03.</span>Eliminate shared admin credentials. Create individual named accounts with least-privilege access for all staff requiring elevated permissions.</li>
+          </ol>
+          <p style="margin-top:1rem;"><strong>Short-Term (30–90 days) — Remediate before policy anniversary:</strong></p>
+          <ul class="doc-ul">
+            <li>Adopt a formal Incident Response Plan (see Tier 2 deliverable)</li>
+            <li>Complete annual security awareness training; retain completion records</li>
+            <li>Inventory all third-party vendors processing PHI; confirm BAAs are current</li>
+            <li>Formalize and obtain staff signatures on Acceptable Use Policy</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="doc-watermark-bar">
+        <span>TECHNICALTERMINATOR LLC · CONFIDENTIAL</span>
+        <span>Page 1 of 4 · techterminatorllc.github.io</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOC 2: IRP ── -->
+  <div class="doc-panel" id="doc-irp">
+    <div class="doc-card">
+      <div class="doc-header">
+        <div class="doc-meta">
+          <span class="doc-badge">Sample · Tier 2 Deliverable</span>
+          <div class="doc-title">Incident Response Plan</div>
+          <div class="doc-client">CLIENT: Meridian Legal Group · Prepared by: TechnicalTerminator LLC</div>
+        </div>
+        <div class="doc-version">
+          Version 1.2<br>
+          Effective: January 2026<br>
+          Review Date: January 2027
+        </div>
+      </div>
+      <div class="doc-body">
+
+        <div class="doc-section">
+          <div class="doc-section-title">Purpose &amp; Scope</div>
+          <p>This Incident Response Plan ("IRP") establishes the procedures Meridian Legal Group ("the Firm") will follow in the event of an actual or suspected cybersecurity incident. This plan applies to all Firm personnel, contractors, and third-party vendors with access to Firm systems or client data.</p>
+          <p>This document is designed to satisfy incident response documentation requirements of leading cyber insurance carriers and aligns with <strong>NIST SP 800-61r2</strong> (Computer Security Incident Handling Guide) and applicable state bar cybersecurity guidance.</p>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Incident Response Team</div>
+          <table class="doc-table">
+            <thead>
+              <tr><th>Role</th><th>Responsibility</th><th>Primary Contact</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Incident Response Lead</td><td>Overall coordination; insurer notification</td><td>[Managing Partner]</td></tr>
+              <tr><td>IT Point of Contact</td><td>Technical containment; evidence preservation</td><td>[IT Manager / MSP]</td></tr>
+              <tr><td>Legal/Compliance</td><td>Regulatory notification obligations; client counsel</td><td>[General Counsel]</td></tr>
+              <tr><td>Communications Lead</td><td>Internal and external messaging</td><td>[Office Manager]</td></tr>
+              <tr><td>Cyber Insurance Carrier</td><td>Coverage activation; breach coach assignment</td><td>[Carrier Contact / Policy #]</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Response Phases</div>
+          <ol class="doc-ol">
+            <li>
+              <span class="step-n">Phase 1</span>
+              <div><strong>Identification</strong> — Any employee who suspects a security incident must immediately notify the IT Point of Contact and Incident Response Lead. Do not attempt to investigate independently or power off affected systems unless instructed. Log the time, observed symptoms, and affected systems. Incidents include (but are not limited to): ransomware messages, unauthorized access alerts, data exfiltration notifications, phishing that resulted in credential entry, or system anomalies.</div>
+            </li>
+            <li>
+              <span class="step-n">Phase 2</span>
+              <div><strong>Containment</strong> — The IT Point of Contact will isolate affected systems from the network (logical or physical) within <strong>4 hours</strong> of incident confirmation. Do not wipe or reimage any systems until forensic evidence is captured. Preserve logs. Disable compromised accounts immediately.</div>
+            </li>
+            <li>
+              <span class="step-n">Phase 3</span>
+              <div><strong>Notification</strong> — The Incident Response Lead will contact the cyber insurance carrier within <strong>24 hours</strong> of incident confirmation using the policy's breach reporting hotline. The carrier will assign a breach coach. Legal/Compliance will evaluate state breach notification obligations (Texas Business &amp; Commerce Code §521.053 requires notification within 60 days of breach discovery when applicable).</div>
+            </li>
+            <li>
+              <span class="step-n">Phase 4</span>
+              <div><strong>Eradication &amp; Recovery</strong> — Once containment is confirmed and forensic imaging complete, affected systems may be restored from clean backups. All restored systems must be verified clean before reconnection. Compromised credentials must be reset; MFA re-enrollment required for all affected accounts.</div>
+            </li>
+            <li>
+              <span class="step-n">Phase 5</span>
+              <div><strong>Post-Incident Review</strong> — Within 30 days of incident closure, the IRT will conduct a lessons-learned review. Findings will be documented and this plan updated as needed. A summary will be provided to the cyber insurance carrier upon request.</div>
+            </li>
+          </ol>
+          <div class="doc-highlight">
+            <strong>Critical:</strong> Notifying your cyber insurance carrier promptly — before engaging outside vendors or public relations — is one of the most common requirements for coverage activation. Failure to notify within the policy window may jeopardize your claim.
+          </div>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Plan Testing &amp; Review</div>
+          <p>This IRP will be reviewed annually and following any declared incident. A tabletop exercise simulating a ransomware scenario should be conducted at minimum once per year. Exercise completion must be documented and retained.</p>
+        </div>
+
+      </div>
+      <div class="doc-watermark-bar">
+        <span>TECHNICALTERMINATOR LLC · CONFIDENTIAL</span>
+        <span>Page 1 of 3 · techterminatorllc.github.io</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOC 3: AUP ── -->
+  <div class="doc-panel" id="doc-aup">
+    <div class="doc-card">
+      <div class="doc-header">
+        <div class="doc-meta">
+          <span class="doc-badge">Sample · Core Policy Document</span>
+          <div class="doc-title">Acceptable Use Policy</div>
+          <div class="doc-client">CLIENT: Summit Ridge Construction · Prepared by: TechnicalTerminator LLC</div>
+        </div>
+        <div class="doc-version">
+          Version 1.0<br>
+          Effective: February 2026<br>
+          Review Date: February 2027
+        </div>
+      </div>
+      <div class="doc-body">
+
+        <div class="doc-section">
+          <div class="doc-section-title">Purpose</div>
+          <p>Summit Ridge Construction ("the Company") provides employees, contractors, and authorized third parties with access to information technology resources to support business operations. This Acceptable Use Policy ("AUP") defines the standards for appropriate use of those resources and the responsibilities of all users.</p>
+          <p>Compliance with this policy supports the Company's cyber insurance obligations, protects against data loss and liability, and ensures the confidentiality of client and business information.</p>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Scope</div>
+          <p>This policy applies to <strong>all employees, temporary staff, contractors, and vendors</strong> who access Company systems, networks, devices, or data — whether on Company premises or remotely. Covered resources include: company-owned and personal devices used for work (BYOD), email accounts, cloud services, project management platforms, and any system containing Company or client data.</p>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Acceptable Use Standards</div>
+          <ul class="doc-ul">
+            <li>Use Company systems primarily for legitimate business purposes. Incidental personal use is permitted provided it does not consume excessive resources or expose the Company to risk.</li>
+            <li>Protect login credentials. Never share passwords or allow another individual to use your account. Use a unique, strong password for each system and enable multi-factor authentication where available.</li>
+            <li>Report suspicious emails, links, or attachments to IT before clicking. When in doubt, do not open.</li>
+            <li>Store work files in Company-approved platforms (e.g., SharePoint, OneDrive) rather than personal cloud storage or local drives.</li>
+            <li>Lock or log out of your workstation when leaving your desk, even briefly.</li>
+            <li>Do not install unauthorized software on Company devices without IT approval.</li>
+          </ul>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Prohibited Activities</div>
+          <p>The following are strictly prohibited and may result in disciplinary action up to and including termination:</p>
+          <ul class="doc-ul">
+            <li>Accessing, transmitting, or storing material that is illegal, discriminatory, or violates Company policies</li>
+            <li>Attempting to access systems, accounts, or data beyond your authorized level</li>
+            <li>Disabling or circumventing security software, VPNs, or monitoring tools</li>
+            <li>Using Company resources for personal commercial activity or outside business ventures</li>
+            <li>Transmitting client or proprietary data to unauthorized personal accounts or devices</li>
+            <li>Connecting unsecured personal devices to the Company network without IT approval</li>
+          </ul>
+          <div class="doc-highlight">
+            Users should have no expectation of privacy when using Company-owned systems or networks. The Company reserves the right to monitor, access, and review activity on these resources.
+          </div>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Acknowledgment</div>
+          <p>All employees and contractors must sign an acknowledgment form confirming receipt and understanding of this policy upon onboarding and annually thereafter. Signed acknowledgments are retained in personnel records and constitute documentation of policy awareness for cyber insurance and regulatory purposes.</p>
+        </div>
+
+      </div>
+      <div class="doc-watermark-bar">
+        <span>TECHNICALTERMINATOR LLC · CONFIDENTIAL</span>
+        <span>Page 1 of 2 · techterminatorllc.github.io</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOC 4: EXEC SUMMARY ── -->
+  <div class="doc-panel" id="doc-exec">
+    <div class="doc-card">
+      <div class="doc-header">
+        <div class="doc-meta">
+          <span class="doc-badge">Sample · Tier 2 Deliverable</span>
+          <div class="doc-title">Executive Summary for Cyber Insurance Underwriter</div>
+          <div class="doc-client">CLIENT: Brightline E-Commerce Co. · Prepared by: TechnicalTerminator LLC</div>
+        </div>
+        <div class="doc-version">
+          Prepared: March 2026<br>
+          Policy Renewal: April 2026<br>
+          Classification: Confidential
+        </div>
+      </div>
+      <div class="doc-body">
+
+        <div class="doc-section">
+          <div class="doc-section-title">About the Organization</div>
+          <p>Brightline E-Commerce Co. is a direct-to-consumer retail operation with $4.2M in annual revenue, 18 full-time employees, and a fully remote workforce. The Company processes approximately 3,200 online transactions per month through a Shopify-based storefront integrated with Stripe for payment processing. Customer PII (name, address, purchase history) is retained in the Company's CRM; full payment card data is not stored by the Company (handled entirely by Stripe, which is PCI-DSS compliant).</p>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Cybersecurity Controls Summary</div>
+          <table class="doc-table">
+            <thead>
+              <tr><th>Control</th><th>Status</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Multi-Factor Authentication</td><td><span class="risk-low">✓ Implemented</span></td><td>MFA enforced on all Google Workspace accounts via Google Authenticator</td></tr>
+              <tr><td>Endpoint Protection</td><td><span class="risk-low">✓ Implemented</span></td><td>CrowdStrike Falcon deployed on all company-issued laptops</td></tr>
+              <tr><td>Data Backup &amp; Recovery</td><td><span class="risk-low">✓ Implemented</span></td><td>Daily automated backups to AWS S3; quarterly restore tests documented</td></tr>
+              <tr><td>Incident Response Plan</td><td><span class="risk-low">✓ Implemented</span></td><td>IRP v1.1 adopted February 2026; tabletop exercise completed March 2026</td></tr>
+              <tr><td>Security Awareness Training</td><td><span class="risk-low">✓ Implemented</span></td><td>Annual training completed; completion records on file</td></tr>
+              <tr><td>Privileged Access Management</td><td><span class="risk-medium">In Progress</span></td><td>Admin accounts separated; PAM tooling under evaluation (Q2 2026)</td></tr>
+              <tr><td>Vendor Risk Management</td><td><span class="risk-low">✓ Implemented</span></td><td>Vendor inventory completed; DPAs in place for all data processors</td></tr>
+              <tr><td>Patch Management</td><td><span class="risk-low">✓ Implemented</span></td><td>Auto-updates enabled; critical patches applied within 72 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Risk Narrative</div>
+          <p>Brightline's primary cyber risk exposure is third-party vendor compromise (supply chain) and business email compromise (BEC) targeting wire transfer or vendor payment changes. Both risks are actively mitigated: vendor contracts include security requirements and the Company uses out-of-band verification for any payment change requests.</p>
+          <p>The Company does not store cardholder data and is not a direct processor of payment transactions — significantly limiting PCI scope and ransomware-related data exfiltration value. The remote workforce is distributed across 6 states; all systems access is managed via Google Workspace with MFA enforcement and device trust policies.</p>
+          <div class="doc-highlight">
+            Since the previous policy period, the Company has implemented a formal Incident Response Plan, completed annual security awareness training, and engaged TechnicalTerminator LLC for ongoing GRC support. These investments reflect a proactive security posture and reduced insurer risk exposure relative to prior year.
+          </div>
+        </div>
+
+        <div class="doc-section">
+          <div class="doc-section-title">Supporting Documentation Available Upon Request</div>
+          <ul class="doc-ul">
+            <li>Incident Response Plan (v1.1, February 2026)</li>
+            <li>Security Awareness Training completion log</li>
+            <li>Tabletop exercise summary (March 2026)</li>
+            <li>Backup restoration test record (Q1 2026)</li>
+            <li>Vendor inventory and risk assessment matrix</li>
+            <li>Acceptable Use Policy with signed employee acknowledgments</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="doc-watermark-bar">
+        <span>TECHNICALTERMINATOR LLC · CONFIDENTIAL</span>
+        <span>Page 1 of 1 · techterminatorllc.github.io</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA in resources -->
+  <div class="resource-cta">
+    <div>
+      <strong>Ready to see what your documentation would look like?</strong>
+      <p>Every deliverable is written for your specific business, insurer, and risk profile — not a template dropped in your inbox. Book a free discovery call and we'll walk through what your engagement would produce.</p>
+    </div>
+    <a href="mailto:sadawson35@gmail.com?subject=Free Discovery Call" class="btn">Book Free Call</a>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <p class="section-label">Ready to Start</p>
+  <h2>Stop Guessing.<br><em>Start Qualifying.</em></h2>
+  <p>Book a free 30-minute discovery call. No obligation. Just answers.<br>Questions first? Email sadawson35@gmail.com</p>
+  <a href="mailto:sadawson35@gmail.com?subject=Free Discovery Call" class="btn">Book Free Discovery Call</a>
+  &nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/sydneydawson35" class="btn btn-ghost">View LinkedIn Profile</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>TechnicalTerminator LLC · GRC · Cyber Insurance Readiness · Policy Development</span>
+  <span>© 2026 TechnicalTerminator LLC</span>
+</footer>
+
+<script>
+  function showDoc(id) {
+    document.querySelectorAll('.doc-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('doc-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
