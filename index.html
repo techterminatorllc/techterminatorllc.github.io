@@ -2,171 +2,829 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Technical Terminator — Cyber Insurance Readiness</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
-:root{
- --black:#0a0a0a;--off:#111;--card:#161616;--border:#2a2a2a;
- --accent:#c8f55a;--white:#f5f5f0;--muted:#888;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;background:var(--black);color:var(--white);line-height:1.6}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-/* NAV */
-nav{
- position:fixed;width:100%;top:0;display:flex;justify-content:space-between;align-items:center;
- padding:1rem 1.5rem;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);
- border-bottom:1px solid var(--border);z-index:1000;
-}
-.nav-logo{font-family:Bebas Neue;font-size:1.4rem;color:var(--accent)}
-.menu-toggle{display:none;font-size:1.6rem;background:none;border:none;color:white}
-.nav-links{display:flex;gap:1.5rem;list-style:none}
-.nav-links a{font-size:.75rem;color:var(--muted);text-decoration:none}
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --accent: #c8f55a;
+    --accent-dim: rgba(200,245,90,0.12);
+    --accent-mid: rgba(200,245,90,0.25);
+    --white: #f5f5f0;
+    --muted: #888;
+    --serif: 'DM Serif Display', serif;
+    --display: 'Bebas Neue', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --body: 'Inter', sans-serif;
+  }
 
-@media(max-width:800px){
- .menu-toggle{display:block}
- .nav-links{position:absolute;top:100%;right:0;width:100%;flex-direction:column;background:var(--off);display:none;padding:1rem}
- .nav-links.show{display:flex}
-}
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* HERO */
-.hero{
- min-height:100vh;display:flex;flex-direction:column;justify-content:center;
- padding:6rem 1.5rem 2rem;max-width:1100px;margin:auto;
-}
-.hero h1{font-family:Bebas Neue;font-size:clamp(3rem,9vw,7rem);line-height:.95}
-.hero em{font-family:DM Serif Display;color:var(--accent)}
-.hero p{max-width:600px;margin-top:1.5rem;color:#ccc}
-.hero .cta{margin-top:2rem}
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: rgba(10, 10, 10, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
 
-.btn{
- display:inline-block;padding:1rem 2.2rem;margin-right:1rem;
- border:1px solid var(--accent);background:var(--accent);color:black;
- text-decoration:none;font-size:.75rem;letter-spacing:.12em;transition:.25s;
-}
-.btn:hover{background:none;color:var(--accent)}
-.btn.secondary{background:none;color:white;border-color:var(--border)}
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
 
-/* SECTIONS */
-.section{padding:4rem 1.5rem;max-width:1100px;margin:auto}
-.section h2{font-family:Bebas Neue;font-size:clamp(2rem,5vw,3.5rem)}
-.grid{display:grid;gap:1rem;margin-top:2rem}
-.card{
- background:var(--card);padding:1.5rem;border:1px solid var(--border);
- transition:.25s;border-radius:12px;
-}
-.card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
 
-@media(min-width:600px){.grid-2{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
 
-/* TABLE */
-.table-wrap{overflow-x:auto;margin-top:2rem}
-table{width:100%;border-collapse:collapse}
-th,td{border:1px solid var(--border);padding:.6rem;text-align:left}
+  .nav-links a:hover {
+    color: var(--accent);
+  }
 
-/* CTA */
-.cta-box{
- margin-top:3rem;padding:2rem;background:rgba(200,245,90,.08);
- border:1px solid rgba(200,245,90,.3);
- display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
-}
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
 
-/* FOOTER */
-footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:.75rem}
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(ellipse, rgba(200, 245, 90, 0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
-/* ANIMATIONS */
-.fade{opacity:0;transform:translateY(20px);transition:all .6s ease}
-.fade.show{opacity:1;transform:translateY(0)}
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
 
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(3rem, 10vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    max-width: 800px;
+  }
+
+  .hero h1 em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    max-width: 560px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: rgba(245, 245, 240, 0.65);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.6rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    color: var(--black);
+    background: var(--accent);
+    transition: all 0.2s;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .btn:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--border);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--white);
+    color: var(--white);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat-val {
+    font-family: var(--display);
+    font-size: 2.2rem;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 4rem 1.5rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em {
+    font-family: var(--serif);
+    font-style: italic;
+  }
+
+  /* Edge strip */
+  .edge {
+    background: var(--accent);
+    color: var(--black);
+    padding: 1.5rem 1.5rem;
+  }
+
+  .edge-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .edge-items {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .edge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+
+  .edge-item::before {
+    content: '✓';
+    font-weight: 700;
+  }
+
+  /* ===== GRIDS (mobile-first, then tablet/desktop) ===== */
+  .why-grid,
+  .tier-grid,
+  .who-grid,
+  .process-steps,
+  .addon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 2rem;
+  }
+
+  .why-card,
+  .tier-card,
+  .who-card,
+  .step,
+  .addon {
+    background: var(--off-black);
+    padding: 2rem 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .tier-card {
+    background: var(--card);
+  }
+
+  .tier-card.featured {
+    background: var(--accent-dim);
+    border: 1px solid rgba(200, 245, 90, 0.3);
+  }
+
+  .why-num {
+    font-family: var(--display);
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .tier-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .tier-card h3 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .tier-price {
+    font-family: var(--display);
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .tier-period {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .tier-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 1rem 0 1.2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+
+  .tier-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .tier-list li {
+    font-size: 0.8rem;
+    color: rgba(245, 245, 240, 0.7);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .tier-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .addon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .addon-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .addon-sub {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .addon-price {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .step-num {
+    font-family: var(--display);
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .who-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  /* ===== TABLES: fully responsive (scroll on mobile) ===== */
+  .doc-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem 0;
+    border-radius: 8px;
+  }
+
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    min-width: 560px;
+  }
+
+  .doc-table th,
+  .doc-table td {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+    color: rgba(245, 245, 240, 0.75);
+  }
+
+  .doc-table th {
+    background: var(--off-black);
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .doc-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .risk-critical {
+    color: #ff5f5f;
+    font-weight: 600;
+  }
+
+  .risk-high {
+    color: #ffaa3c;
+    font-weight: 600;
+  }
+
+  .risk-medium {
+    color: #ffd166;
+    font-weight: 500;
+  }
+
+  .risk-low {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* Resource tabs & cards */
+  .resources {
+    background: var(--black);
+  }
+
+  .resources-intro {
+    max-width: 640px;
+    margin-bottom: 2rem;
+  }
+
+  .doc-tabs {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: thin;
+  }
+
+  .doc-tab {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.2rem;
+    color: var(--muted);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .doc-tab:hover {
+    color: var(--white);
+  }
+
+  .doc-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .doc-panel {
+    display: none;
+  }
+
+  .doc-panel.active {
+    display: block;
+  }
+
+  .doc-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .doc-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .doc-badge {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.7rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid rgba(200, 245, 90, 0.3);
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .doc-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+
+  .doc-client {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .doc-version {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .doc-body {
+    padding: 1.5rem;
+  }
+
+  .doc-section {
+    margin-bottom: 2rem;
+  }
+
+  .doc-section-title {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+
+  .doc-highlight {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    font-size: 0.85rem;
+    margin: 1rem 0;
+  }
+
+  .doc-ol,
+  .doc-ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .doc-ol li,
+  .doc-ul li {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.4rem;
+    position: relative;
+    line-height: 1.65;
+    color: rgba(245, 245, 240, 0.75);
+  }
+
+  .doc-ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .doc-ol li .step-n {
+    font-family: var(--mono);
+    font-weight: 500;
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .resource-cta {
+    margin-top: 2.5rem;
+    padding: 2rem 1.5rem;
+    background: var(--accent-dim);
+    border: 1px solid rgba(200, 245, 90, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .cta-section {
+    text-align: center;
+  }
+
+  footer {
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+
+  /* ===== MEDIA QUERIES (tablet & desktop) ===== */
+  @media (min-width: 640px) {
+    nav {
+      padding: 1.25rem 2rem;
+    }
+    .nav-links {
+      gap: 1.8rem;
+    }
+    section {
+      padding: 5rem 2rem;
+    }
+    .hero {
+      padding: 8rem 2rem 4rem;
+    }
+    .why-grid,
+    .tier-grid,
+    .who-grid,
+    .process-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .addon-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .doc-header {
+      padding: 2rem;
+    }
+    .doc-body {
+      padding: 2rem;
+    }
+    footer {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    nav {
+      padding: 1.25rem 3rem;
+    }
+    section {
+      padding: 6rem 3rem;
+    }
+    .hero {
+      padding: 9rem 3rem 4rem;
+    }
+    .why-grid,
+    .tier-grid,
+    .who-grid,
+    .process-steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .tier-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .who-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .process-steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .addon-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .doc-title {
+      font-size: 1.8rem;
+    }
+  }
+
+  /* improve spacing on tight screens */
+  @media (max-width: 480px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .tier-price {
+      font-size: 2.2rem;
+    }
+    .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.65rem;
+    }
+    .hero-cta .btn {
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+    .btn-ghost {
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
+  }
 </style>
 </head>
 <body>
 
 <nav>
- <div class="nav-logo">Technical Terminator</div>
- <button class="menu-toggle" onclick="toggleMenu()">☰</button>
- <ul class="nav-links">
-  <li><a href="#services">Services</a></li>
-  <li><a href="#pricing">Pricing</a></li>
-  <li><a href="#process">Process</a></li>
-  <li><a href="#resources">Resources</a></li>
- </ul>
+  <div class="nav-logo">Technical Terminator</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#who">Who</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="mailto:sadawsontech@gmail.com">Contact</a></li>
+  </ul>
 </nav>
 
-<section class="hero fade">
- <h1>Cyber Insurance <em>Readiness</em></h1>
- <p>Qualify faster, reduce premiums, and avoid denied claims — using real insurance insider experience.</p>
- <div class="cta">
-  <a href="mailto:sadawsontech@gmail.com" class="btn">Book Free Call</a>
-  <a href="#resources" class="btn secondary">View Deliverables</a>
- </div>
-</section>
-
-<section id="services" class="section fade">
- <h2>Why It Matters</h2>
- <div class="grid grid-2">
-  <div class="card"><h3>Claims Insight</h3><p>We know exactly how claims get denied.</p></div>
-  <div class="card"><h3>Underwriter Alignment</h3><p>Policies designed for approval.</p></div>
-  <div class="card"><h3>Clear Documentation</h3><p>Simple, usable, audit-ready.</p></div>
-  <div class="card"><h3>SMB Focus</h3><p>Built for growing businesses.</p></div>
- </div>
-</section>
-
-<section id="pricing" class="section fade">
- <h2>Pricing</h2>
- <div class="grid grid-3">
-  <div class="card"><h3>Audit</h3><p>$500</p></div>
-  <div class="card"><h3>Package</h3><p>$1500</p></div>
-  <div class="card"><h3>Retainer</h3><p>$800/mo</p></div>
- </div>
-</section>
-
-<section id="process" class="section fade">
- <h2>Process</h2>
- <div class="grid grid-2">
-  <div class="card"><h3>1. Discovery</h3></div>
-  <div class="card"><h3>2. Assessment</h3></div>
-  <div class="card"><h3>3. Deliverables</h3></div>
-  <div class="card"><h3>4. Support</h3></div>
- </div>
-</section>
-
-<section id="resources" class="section fade">
- <h2>Sample Deliverables</h2>
- <div class="table-wrap">
-  <table>
-   <tr><th>Control</th><th>Status</th></tr>
-   <tr><td>MFA</td><td>Missing</td></tr>
-   <tr><td>IR Plan</td><td>Missing</td></tr>
-  </table>
- </div>
-
- <div class="cta-box">
-  <div>
-   <strong>Want your own readiness report?</strong>
-   <p style="color:#aaa;font-size:.85rem">Book a call and see what your business needs.</p>
+<section class="hero">
+  <p class="hero-eyebrow">GRC + Cyber Insurance Readiness · 2026</p>
+  <h1>Cyber Insurance<br><em>Readiness.</em></h1>
+  <p class="hero-sub">Most businesses buy cyber insurance and <strong>hope for the best.</strong> We help you actually qualify, reduce premiums, and survive a claim — using a perspective no one else brings: <strong>years inside the insurance industry.</strong></p>
+  <div class="hero-cta">
+    <a href="mailto:sadawsontech@gmail.com" class="btn">Book a Free Discovery Call</a>
+    <a href="#resources" class="btn btn-ghost">View Sample Docs</a>
   </div>
-  <a href="mailto:sadawsontech@gmail.com" class="btn">Start Now</a>
- </div>
+  <div class="hero-stats">
+    <div><div class="stat-val">60%</div><div class="stat-label">of SMBs denied claims<br>due to policy gaps</div></div>
+    <div><div class="stat-val">4+</div><div class="stat-label">years inside<br>insurance claims</div></div>
+    <div><div class="stat-val">SEC+</div><div class="stat-label">Certified &amp;<br>GRC Focused</div></div>
+  </div>
 </section>
 
-<footer>
- Technical Terminator LLC · Cyber Insurance Readiness · 2026
-</footer>
+<div class="edge">
+  <div class="edge-inner">
+    <div class="edge-items">
+      <div class="edge-item">Insurance Claims Expertise</div>
+      <div class="edge-item">Security+ Certified</div>
+      <div class="edge-item">NIST &amp; ISO Frameworks</div>
+      <div class="edge-item">Policy &amp; Documentation Expertise</div>
+      <div class="edge-item">SMB-Focused Pricing</div>
+    </div>
+  </div>
+</div>
 
-<script>
-function toggleMenu(){document.querySelector('.nav-links').classList.toggle('show')}
+<section id="services">
+  <p class="section-label">Why It Matters</p>
+  <h2>Your Insurer Knows Exactly<br><em>What to Look For</em></h2>
+  <p style="max-width:560px; color:rgba(245,245,240,0.6); font-size:0.95rem;">When a claim hits, adjusters investigate your controls before they pay out. I was one of those adjusters. Now I help you prepare for that moment — before it happens.</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-num">01</div><h3>I Know How Claims Get Denied</h3><p>After 4+ years evaluating claims at a large insurance carrier, I know the exact gaps insurers use to reduce or deny payouts.</p></div>
+    <div class="why-card"><div class="why-num">02</div><h3>Policies That Actually Satisfy Underwriters</h3><p>Insurance underwriters have a checklist. I write policies to meet it, aligned to NIST CSF and CIS Controls.</p></div>
+    <div class="why-card"><div class="why-num">03</div><h3>Plain-Language Documentation</h3><p>You'll receive documentation that makes sense to your team, insurer, and auditor. Clear, actionable, professional.</p></div>
+    <div class="why-card"><div class="why-num">04</div><h3>Built for Small &amp; Mid-Size Businesses</h3><p>Enterprise GRC consultants charge enterprise prices. Your 10–50 person company needs a right-sized solution.</p></div>
+  </div>
+</section>
 
-const observer=new IntersectionObserver(entries=>{
- entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})
-})
-document.querySelectorAll('.fade').forEach(el=>observer.observe(el))
-</script>
+<section id="pricing" class="tiers">
+  <p class="section-label">Service Tiers</p>
+  <h2>Clear Pricing.<br><em>No Surprises.</em></h2>
+  <div class="tier-grid">
+    <div class="tier-card"><div class="tier-tag">Tier 01</div><h3>Readiness Audit</h3><div class="tier-price">$500</div><div class="tier-period">One-time · 5–7 business days</div><p class="tier-desc">A snapshot of where you stand. Perfect for first-time applicants or renewal prep.</p><ul class="tier-list"><li>1-hour discovery call + questionnaire</li><li>Gap analysis vs underwriter requirements</li><li>Review of existing policies</li><li>Written findings + risk ratings</li><li>Prioritized action list</li><li>30-min debrief call</li></ul><a href="mailto:sadawsontech@gmail.com?subject=Readiness Audit Inquiry" class="btn btn-ghost">Get Started</a></div>
+    <div class="tier-card featured"><div class="tier-tag">Tier 02 · Most Popular</div><h3>Readiness Package</h3><div class="tier-price">$1,500</div><div class="tier-period">One-time · 2–3 weeks</div><p class="tier-desc">Full solution for businesses preparing for cyber insurance or struggling with renewal requirements.</p><ul class="tier-list"><li>Everything in Tier 1</li><li>Full risk assessment</li><li>3 core policy documents (AUP, IRP, Data Handling)</li><li>Vendor checklist & insurance app support</li><li>Security awareness 1-pager</li><li>Executive summary for insurer</li><li>2 follow-up email Q&A sessions</li></ul><a href="mailto:sadawsontech@gmail.com?subject=Readiness Package Inquiry" class="btn">Get Started</a></div>
+    <div class="tier-card"><div class="tier-tag">Tier 03</div><h3>Retainer</h3><div class="tier-price">$800<span style="font-size:1.5rem">/mo</span></div><div class="tier-period">Monthly · 3-month minimum</div><p class="tier-desc">Ongoing GRC support to stay audit‑ready and have a consultant year‑round.</p><ul class="tier-list"><li>Monthly compliance check-in</li><li>Policy reviews & updates</li><li>Vendor risk reviews (2/month)</li><li>Incident response maintenance</li><li>AI governance updates</li><li>Annual renewal prep included</li></ul><a href="mailto:sadawsontech@gmail.com?subject=Retainer Inquiry" class="btn btn-ghost">Get Started</a></div>
+  </div>
+  <div style="margin-top:3rem;"><p class="section-label">Add-On Services</p><div class="addon-grid"><div class="addon"><div><div class="addon-name">Additional Policy Document</div><div class="addon-sub">BCP, BYOD, Remote Work, etc.</div></div><div class="addon-price">$200 / policy</div></div><div class="addon"><div><div class="addon-name">Security Awareness Training</div><div class="addon-sub">Custom 1-hr session (virtual)</div></div><div class="addon-price">$350</div></div><div class="addon"><div><div class="addon-name">AI Use Policy Package</div><div class="addon-sub">AI governance + employee guidance</div></div><div class="addon-price">$300</div></div><div class="addon"><div><div class="addon-name">Claim Denial Review</div><div class="addon-sub">Review and identify fixes</div></div><div class="addon-price">$400</div></div></div></div>
+</section>
 
-</body>
-</html>
+<section id="process"><p class="section-label">How It Works</p><h2>From Exposed<br><em>to Protected</em></h2><div class="process-steps"><div class="step"><div class="step-num">01</div><h3>Discovery Call</h3><p>Free 30-min call to understand your business, insurance status, and goals.</p></div><div class="step"><div class="step-num">02</div><h3>Assessment</h3><p>Intake questionnaire + review of existing policies. Identify gaps against underwriter benchmarks.</p></div><div class="step"><div class="step-num">03</div><h3>Deliverables</h3><p>Written report, policy documents, and action plan — ready for your insurer.</p></div><div class="step"><div class="step-num">04</div><h3>Debrief + Support</h3><p>Walk through findings together. Leave with clarity, confidence, and a clear path forward.</p></div></div></section>
+
+<section id="who"><p class="section-label">Who This Is For</p><h2>Your Business<br><em>Qualifies If…</em></h2><div class="who-grid"><div class="who-card"><div class="who-icon">🏥</div><h3>Healthcare</h3><p>HIPAA + growing insurance requirements.</p></div><div class="who-card"><div class="who-icon">⚖️</div><h3>Law Firms &amp; Legal</h3><p>Sensitive client data & high liability exposure.</p></div><div class="who-card"><div class="who-icon">🏗️</div><h3>Contractors &amp; Construction</h3><p>Client requirements for cybersecurity controls.</p></div><div class="who-card"><div class="who-icon">🛒</div><h3>E‑Commerce &amp; Retail</h3><p>Payment data, PII, vendor-heavy operations.</p></div><div class="who-card"><div class="who-icon">🚀</div><h3>Startups</h3><p>Build compliance before investors require proof.</p></div><div class="who-card"><div class="who-icon">🏢</div><h3>MSPs &amp; IT Providers</h3><p>Offer GRC services to clients without internal compliance.</p></div></div></section>
+
+<section id="resources" class="resources">
+  <p class="section-label">Resources</p>
+  <h2>Sample<br><em>Deliverables</em></h2>
+  <div class="resources-intro"><p>Every engagement produces documentation built to satisfy underwriters, auditors, and your team. Below are representative excerpts.</p><p style="margin-top:0.5rem; font-size:0.75rem;">* All company names, personnel, and data are illustrative examples only.</p></div>
+  <div class="doc-tabs"><button class="doc-tab active" onclick="showDoc('gap')">Gap Analysis</button><button class="doc-tab" onclick="showDoc('irp')">Incident Response</button><button class="doc-tab" onclick="showDoc('aup')">Acceptable Use</button><button class="doc-tab" onclick="showDoc('exec')">Executive Summary</button></div>
+
+  <!-- GAP ANALYSIS -->
+  <div class="doc-panel active" id="doc-gap"><div class="doc-card"><div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 1</span><div class="doc-title">Cyber Insurance Readiness Gap Analysis</div><div class="doc-client">CLIENT: Acme Dental Associates</div></div><div class="doc-version">Version 1.0 · March 2026</div></div><div class="doc-body"><div class="doc-section"><div class="doc-section-title">Executive Overview</div><p>Overall readiness score: <strong>47/100</strong> — material gaps in access control, incident preparedness, and documentation create claim denial risk.</p><div class="doc-highlight">Priority: Enable MFA on email & EHR; test backups; eliminate shared admin accounts.</div></div><div class="doc-section"><div class="doc-section-title">Findings Summary</div><div class="doc-table-wrapper"><table class="doc-table"><thead><tr><th>Control Area</th><th>Current State</th><th>Risk Level</th></tr></thead><tbody><tr><td>Multi-Factor Authentication</td><td>Not deployed on email/EHR</td><td><span class="risk-critical">Critical</span></td></tr><tr><td>Incident Response Plan</td><td>No formal plan</td><td><span class="risk-critical">Critical</span></td></tr><tr><td>Privileged Access</td><td>Shared admin credentials</td><td><span class="risk-high">High</span></td></tr><tr><td>Backup & Recovery</td><td>Untested recovery</td><td><span class="risk-high">High</span></td></tr><tr><td>Employee Training</td><td>No formal training</td><td><span class="risk-medium">Medium</span></td></tr></tbody></table></div></div></div><div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05); font-size:0.65rem;">TECHNICAL TERMINATOR LLC · CONFIDENTIAL</div></div></div>
+
+  <!-- IRP -->
+  <div class="doc-panel" id="doc-irp"><div class="doc-card"><div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 2</span><div class="doc-title">Incident Response Plan</div><div class="doc-client">CLIENT: Meridian Legal Group</div></div><div class="doc-version">Version 1.2 · Jan 2026</div></div><div class="doc-body"><div class="doc-section"><div class="doc-section-title">Response Phases</div><ol class="doc-ol"><li><span class="step-n">1.</span> Identification: report immediately to IT lead.</li><li><span class="step-n">2.</span> Containment: isolate affected systems within 4 hours.</li><li><span class="step-n">3.</span> Notification: contact insurer within 24 hours.</li><li><span class="step-n">4.</span> Eradication & recovery from clean backups.</li><li><span class="step-n">5.</span> Post-incident review within 30 days.</li></ol><div class="doc-highlight">Critical: Notify your cyber insurance carrier before engaging outside vendors.</div></div></div></div></div>
+
+  <!-- AUP -->
+  <div class="doc-panel" id="doc-aup"><div class="doc-card"><div class="doc-header"><div class
