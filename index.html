@@ -722,7 +722,6 @@
     }
   }
 
-  /* improve spacing on tight screens */
   @media (max-width: 480px) {
     .hero-stats {
       flex-direction: column;
@@ -814,17 +813,140 @@
 
 <section id="who"><p class="section-label">Who This Is For</p><h2>Your Business<br><em>Qualifies If…</em></h2><div class="who-grid"><div class="who-card"><div class="who-icon">🏥</div><h3>Healthcare</h3><p>HIPAA + growing insurance requirements.</p></div><div class="who-card"><div class="who-icon">⚖️</div><h3>Law Firms &amp; Legal</h3><p>Sensitive client data & high liability exposure.</p></div><div class="who-card"><div class="who-icon">🏗️</div><h3>Contractors &amp; Construction</h3><p>Client requirements for cybersecurity controls.</p></div><div class="who-card"><div class="who-icon">🛒</div><h3>E‑Commerce &amp; Retail</h3><p>Payment data, PII, vendor-heavy operations.</p></div><div class="who-card"><div class="who-icon">🚀</div><h3>Startups</h3><p>Build compliance before investors require proof.</p></div><div class="who-card"><div class="who-icon">🏢</div><h3>MSPs &amp; IT Providers</h3><p>Offer GRC services to clients without internal compliance.</p></div></div></section>
 
+<!-- ========== RESOURCES SECTION WITH FULLY FUNCTIONAL TABS ========== -->
 <section id="resources" class="resources">
   <p class="section-label">Resources</p>
   <h2>Sample<br><em>Deliverables</em></h2>
   <div class="resources-intro"><p>Every engagement produces documentation built to satisfy underwriters, auditors, and your team. Below are representative excerpts.</p><p style="margin-top:0.5rem; font-size:0.75rem;">* All company names, personnel, and data are illustrative examples only.</p></div>
-  <div class="doc-tabs"><button class="doc-tab active" onclick="showDoc('gap')">Gap Analysis</button><button class="doc-tab" onclick="showDoc('irp')">Incident Response</button><button class="doc-tab" onclick="showDoc('aup')">Acceptable Use</button><button class="doc-tab" onclick="showDoc('exec')">Executive Summary</button></div>
+  
+  <div class="doc-tabs">
+    <button class="doc-tab active" data-doc="gap">Gap Analysis</button>
+    <button class="doc-tab" data-doc="irp">Incident Response</button>
+    <button class="doc-tab" data-doc="aup">Acceptable Use</button>
+    <button class="doc-tab" data-doc="exec">Executive Summary</button>
+  </div>
 
-  <!-- GAP ANALYSIS -->
-  <div class="doc-panel active" id="doc-gap"><div class="doc-card"><div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 1</span><div class="doc-title">Cyber Insurance Readiness Gap Analysis</div><div class="doc-client">CLIENT: Acme Dental Associates</div></div><div class="doc-version">Version 1.0 · March 2026</div></div><div class="doc-body"><div class="doc-section"><div class="doc-section-title">Executive Overview</div><p>Overall readiness score: <strong>47/100</strong> — material gaps in access control, incident preparedness, and documentation create claim denial risk.</p><div class="doc-highlight">Priority: Enable MFA on email & EHR; test backups; eliminate shared admin accounts.</div></div><div class="doc-section"><div class="doc-section-title">Findings Summary</div><div class="doc-table-wrapper"><table class="doc-table"><thead><tr><th>Control Area</th><th>Current State</th><th>Risk Level</th></tr></thead><tbody><tr><td>Multi-Factor Authentication</td><td>Not deployed on email/EHR</td><td><span class="risk-critical">Critical</span></td></tr><tr><td>Incident Response Plan</td><td>No formal plan</td><td><span class="risk-critical">Critical</span></td></tr><tr><td>Privileged Access</td><td>Shared admin credentials</td><td><span class="risk-high">High</span></td></tr><tr><td>Backup & Recovery</td><td>Untested recovery</td><td><span class="risk-high">High</span></td></tr><tr><td>Employee Training</td><td>No formal training</td><td><span class="risk-medium">Medium</span></td></tr></tbody></table></div></div></div><div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05); font-size:0.65rem;">TECHNICAL TERMINATOR LLC · CONFIDENTIAL</div></div></div>
+  <!-- Panel 1: Gap Analysis -->
+  <div class="doc-panel active" id="doc-gap">
+    <div class="doc-card">
+      <div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 1</span><div class="doc-title">Cyber Insurance Readiness Gap Analysis</div><div class="doc-client">CLIENT: Acme Dental Associates</div></div><div class="doc-version">Version 1.0 · March 2026</div></div>
+      <div class="doc-body">
+        <div class="doc-section"><div class="doc-section-title">Executive Overview</div><p>Overall readiness score: <strong>47/100</strong> — material gaps in access control, incident preparedness, and documentation create claim denial risk.</p><div class="doc-highlight">Priority: Enable MFA on email & EHR; test backups; eliminate shared admin accounts.</div></div>
+        <div class="doc-section"><div class="doc-section-title">Findings Summary</div><div class="doc-table-wrapper"><table class="doc-table"><thead><tr><th>Control Area</th><th>Current State</th><th>Risk Level</th></tr></thead><tbody><tr><td>Multi-Factor Authentication</td><td>Not deployed on email/EHR</td><td><span class="risk-critical">Critical</span></td></tr><tr><td>Incident Response Plan</td><td>No formal plan</td><td><span class="risk-critical">Critical</span></td></tr><tr><td>Privileged Access</td><td>Shared admin credentials</td><td><span class="risk-high">High</span></td></tr><tr><td>Backup & Recovery</td><td>Untested recovery</td><td><span class="risk-high">High</span></td></tr><tr><td>Employee Training</td><td>No formal training</td><td><span class="risk-medium">Medium</span></td></tr></tbody></table></div></div>
+      </div>
+      <div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05); font-size:0.65rem;">TECHNICAL TERMINATOR LLC · CONFIDENTIAL</div>
+    </div>
+  </div>
 
-  <!-- IRP -->
-  <div class="doc-panel" id="doc-irp"><div class="doc-card"><div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 2</span><div class="doc-title">Incident Response Plan</div><div class="doc-client">CLIENT: Meridian Legal Group</div></div><div class="doc-version">Version 1.2 · Jan 2026</div></div><div class="doc-body"><div class="doc-section"><div class="doc-section-title">Response Phases</div><ol class="doc-ol"><li><span class="step-n">1.</span> Identification: report immediately to IT lead.</li><li><span class="step-n">2.</span> Containment: isolate affected systems within 4 hours.</li><li><span class="step-n">3.</span> Notification: contact insurer within 24 hours.</li><li><span class="step-n">4.</span> Eradication & recovery from clean backups.</li><li><span class="step-n">5.</span> Post-incident review within 30 days.</li></ol><div class="doc-highlight">Critical: Notify your cyber insurance carrier before engaging outside vendors.</div></div></div></div></div>
+  <!-- Panel 2: Incident Response Plan -->
+  <div class="doc-panel" id="doc-irp">
+    <div class="doc-card">
+      <div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 2</span><div class="doc-title">Incident Response Plan</div><div class="doc-client">CLIENT: Meridian Legal Group</div></div><div class="doc-version">Version 1.2 · Jan 2026</div></div>
+      <div class="doc-body">
+        <div class="doc-section"><div class="doc-section-title">Response Phases</div><ol class="doc-ol"><li><span class="step-n">1.</span> Identification: report immediately to IT lead.</li><li><span class="step-n">2.</span> Containment: isolate affected systems within 4 hours.</li><li><span class="step-n">3.</span> Notification: contact insurer within 24 hours.</li><li><span class="step-n">4.</span> Eradication & recovery from clean backups.</li><li><span class="step-n">5.</span> Post-incident review within 30 days.</li></ol><div class="doc-highlight">Critical: Notify your cyber insurance carrier before engaging outside vendors.</div></div>
+        <div class="doc-section"><div class="doc-section-title">Incident Response Team</div><div class="doc-table-wrapper"><table class="doc-table"><thead><tr><th>Role</th><th>Responsibility</th></tr></thead><tbody><tr><td>Incident Response Lead</td><td>Overall coordination; insurer notification</td></tr><tr><td>IT Point of Contact</td><td>Technical containment; evidence preservation</td></tr><tr><td>Legal/Compliance</td><td>Regulatory notification obligations</td></tr></tbody></table></div></div>
+      </div>
+      <div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05);">TECHNICAL TERMINATOR LLC · CONFIDENTIAL</div>
+    </div>
+  </div>
 
-  <!-- AUP -->
-  <div class="doc-panel" id="doc-aup"><div class="doc-card"><div class="doc-header"><div class
+  <!-- Panel 3: Acceptable Use Policy -->
+  <div class="doc-panel" id="doc-aup">
+    <div class="doc-card">
+      <div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Core Policy</span><div class="doc-title">Acceptable Use Policy</div><div class="doc-client">CLIENT: Summit Ridge Construction</div></div><div class="doc-version">Version 1.0 · Feb 2026</div></div>
+      <div class="doc-body">
+        <div class="doc-section"><div class="doc-section-title">Purpose & Scope</div><p>This Acceptable Use Policy defines standards for appropriate use of company technology resources. Applies to all employees, contractors, and vendors.</p></div>
+        <div class="doc-section"><div class="doc-section-title">Prohibited Activities</div><ul class="doc-ul"><li>Accessing illegal or discriminatory material</li><li>Attempting to access systems beyond authorization</li><li>Disabling security software or monitoring tools</li><li>Using company resources for outside business ventures</li></ul><div class="doc-highlight">Users should have no expectation of privacy on company-owned systems.</div></div>
+      </div>
+      <div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05);">TECHNICAL TERMINATOR LLC · CONFIDENTIAL</div>
+    </div>
+  </div>
+
+  <!-- Panel 4: Executive Summary for Underwriter -->
+  <div class="doc-panel" id="doc-exec">
+    <div class="doc-card">
+      <div class="doc-header"><div class="doc-meta"><span class="doc-badge">Sample · Tier 2</span><div class="doc-title">Executive Summary for Cyber Insurance Underwriter</div><div class="doc-client">CLIENT: Brightline E-Commerce Co.</div></div><div class="doc-version">Prepared: March 2026</div></div>
+      <div class="doc-body">
+        <div class="doc-section"><div class="doc-section-title">Cybersecurity Controls Summary</div><div class="doc-table-wrapper"><table class="doc-table"><thead><tr><th>Control</th><th>Status</th><th>Notes</th></tr></thead><tbody><tr><td>Multi-Factor Authentication</td><td><span class="risk-low">✓ Implemented</span></td><td>Enforced on all Google Workspace accounts</td></tr><tr><td>Endpoint Protection</td><td><span class="risk-low">✓ Implemented</span></td><td>CrowdStrike Falcon deployed</td></tr><tr><td>Incident Response Plan</td><td><span class="risk-low">✓ Implemented</span></td><td>Tabletop exercise completed</td></tr><tr><td>Security Awareness Training</td><td><span class="risk-low">✓ Implemented</span></td><td>Annual training with records</td></tr></tbody></table></div><div class="doc-highlight">Since the previous policy period, the Company has implemented a formal IRP and completed annual training, reflecting a proactive security posture.</div></div>
+      </div>
+      <div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05);">TECHNICAL TERMINATOR LLC · CONFIDENTIAL</div>
+    </div>
+  </div>
+
+  <div class="resource-cta">
+    <div><strong>Ready to see what your documentation would look like?</strong><p>Every deliverable is written for your specific business, insurer, and risk profile — not a template. Book a free discovery call and we'll walk through what your engagement would produce.</p></div>
+    <a href="mailto:sadawsontech@gmail.com?subject=Free Discovery Call" class="btn">Book Free Call</a>
+  </div>
+</section>
+
+<section class="cta-section">
+  <p class="section-label">Ready to Start</p>
+  <h2>Stop Guessing.<br><em>Start Qualifying.</em></h2>
+  <p>Book a free 30-minute discovery call. No obligation. Just answers.<br>Questions first? Email sadawsontech@gmail.com</p>
+  <a href="mailto:sadawsontech@gmail.com?subject=Free Discovery Call" class="btn">Book Free Discovery Call</a>
+  &nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/sydneydawson35" class="btn btn-ghost">View LinkedIn Profile</a>
+</section>
+
+<footer>
+  <span>Technical Terminator LLC · GRC · Cyber Insurance Readiness · Policy Development</span>
+  <span>© 2026 Technical Terminator LLC</span>
+</footer>
+
+<script>
+  // Robust tab switching functionality for Resources section
+  function initTabs() {
+    const tabs = document.querySelectorAll('.doc-tab');
+    const panels = {
+      gap: document.getElementById('doc-gap'),
+      irp: document.getElementById('doc-irp'),
+      aup: document.getElementById('doc-aup'),
+      exec: document.getElementById('doc-exec')
+    };
+
+    function activateTab(tabId) {
+      // Deactivate all panels
+      Object.values(panels).forEach(panel => {
+        if (panel) panel.classList.remove('active');
+      });
+      // Activate selected panel
+      if (panels[tabId]) panels[tabId].classList.add('active');
+      
+      // Update tab button active states
+      tabs.forEach(tab => {
+        const tabDoc = tab.getAttribute('data-doc');
+        if (tabDoc === tabId) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        const docId = this.getAttribute('data-doc');
+        if (docId && panels[docId]) {
+          activateTab(docId);
+        }
+      });
+    });
+
+    // Ensure the first tab is active on page load (gap analysis visible)
+    const activeTab = document.querySelector('.doc-tab.active');
+    if (!activeTab || !panels.gap?.classList.contains('active')) {
+      // Default to gap panel
+      activateTab('gap');
+    }
+  }
+
+  // Run when DOM is fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs);
+  } else {
+    initTabs();
+  }
+</script>
+</body>
+</html>
