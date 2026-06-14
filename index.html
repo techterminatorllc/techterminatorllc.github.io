@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
 <!-- Structured data: who/what/where for AI Overviews and search -->
 <script type="application/ld+json">
@@ -135,6 +136,18 @@
     background: rgba(10, 10, 10, 0.94);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .nav-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
   }
 
   .nav-logo {
@@ -829,7 +842,16 @@
 <body>
 
 <nav>
-  <div class="nav-logo">Technical Terminator</div>
+  <div class="nav-logo-wrap">
+    <svg class="nav-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="80" height="80" rx="12" fill="#c8f55a"/>
+      <rect x="24" y="26" width="42" height="5.5" stroke="#0a0a0a" stroke-width="1.2" fill="none" opacity="0.4"/>
+      <rect x="41.5" y="31.5" width="7" height="32" stroke="#0a0a0a" stroke-width="1.2" fill="none" opacity="0.4"/>
+      <rect x="14" y="17" width="42" height="6.5" fill="#0a0a0a"/>
+      <rect x="31.5" y="23.5" width="7" height="34" fill="#0a0a0a"/>
+    </svg>
+    <div class="nav-logo">Technical Terminator</div>
+  </div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
