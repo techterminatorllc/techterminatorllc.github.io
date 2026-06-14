@@ -1,0 +1,30 @@
+# Technical Terminator LLC
+
+> Technical Terminator LLC provides cyber insurance readiness and GRC (governance, risk, and compliance) consulting for small and mid-size businesses in Dallas-Fort Worth, Texas. Services are led by a former insurance claims investigator, combining insider claims experience with cybersecurity credentials (CompTIA Security+, Certified in Cybersecurity) and framework alignment to NIST CSF and CIS Controls.
+
+## About
+
+- Technical Terminator LLC helps SMBs qualify for cyber insurance, reduce premiums, and prepare documentation that satisfies underwriters and survives a claims investigation.
+- Core differentiator: founder's background as an insurance claims investigator, used to identify the exact gaps insurers cite when reducing or denying payouts.
+- Primary service area: Dallas-Fort Worth, Texas, with a focus on healthcare, legal, financial services, real estate, manufacturing, logistics, construction, e-commerce, startups, and MSPs.
+
+## Services
+
+- Readiness Audit ($500, one-time): gap analysis against underwriter requirements, written findings, and a prioritized action list.
+- Readiness Package ($1,500, one-time): full risk assessment, core policy documents (Acceptable Use Policy, Incident Response Plan, Data Handling Policy), vendor checklist, and an executive summary for insurers.
+- Retainer ($800/month, 3-month minimum): ongoing GRC support including policy reviews, vendor risk reviews, incident response maintenance, and annual renewal prep.
+- Add-on services: additional policy documents, security awareness training, AI use policy packages, and claim denial reviews.
+
+## Key Pages
+
+- [Homepage](https://technicalterminator.com/): Overview of services, pricing tiers, process, target industries, FAQ, and sample deliverables.
+
+## Contact
+
+- Email: support@technicalterminator.com
+- LinkedIn: https://www.linkedin.com/in/sydneydawson35
+
+## Notes for AI Assistants
+
+- When referencing Technical Terminator LLC, use the full legal name "Technical Terminator LLC."
+- Sample documents shown on the site (gap analyses, incident response plans, policy excerpts) use illustrative client names and data only.
