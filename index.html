@@ -849,6 +849,91 @@
       margin-top: 0.5rem;
     }
   }
+  /* ===== CONTACT FORM ===== */
+  .contact-form-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-group label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 0.875rem;
+    padding: 0.65rem 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    padding-right: 2.2rem;
+    cursor: pointer;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.6;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-group select option {
+    background: var(--card);
+    color: var(--white);
+  }
+
+  @media (max-width: 560px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
@@ -872,7 +957,7 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#resources">Resources</a></li>
     <li><a href="/blog/">Blog</a></li>
-    <li><a href="mailto:support@technicalterminator.com">Contact</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -881,7 +966,7 @@
   <h1>Cyber Insurance<br><em>Readiness.</em></h1>
   <p class="hero-sub">Most businesses buy cyber insurance and <strong>hope for the best.</strong> We help you actually qualify, reduce premiums, and survive a claim — using a perspective no one else brings: <strong>years inside the insurance industry.</strong></p>
   <div class="hero-cta">
-    <a href="mailto:support@technicalterminator.com" class="btn">Book a Free Discovery Call</a>
+    <a href="#contact" class="btn">Book a Free Discovery Call</a>
     <a href="#resources" class="btn btn-ghost">View Sample Docs</a>
   </div>
   <div class="hero-stats">
@@ -919,9 +1004,9 @@
   <p class="section-label">Service Tiers</p>
   <h2>Clear Pricing.<br><em>No Surprises.</em></h2>
   <div class="tier-grid">
-    <div class="tier-card"><div class="tier-tag">Tier 01</div><h3>Readiness Audit</h3><div class="tier-price">$500</div><div class="tier-period">One-time · 5–7 business days</div><p class="tier-desc">A snapshot of where you stand. Perfect for first-time applicants or renewal prep.</p><ul class="tier-list"><li>1-hour discovery call + questionnaire</li><li>Gap analysis vs underwriter requirements</li><li>Review of existing policies</li><li>Written findings + risk ratings</li><li>Prioritized action list</li><li>30-min debrief call</li></ul><a href="mailto:support@technicalterminator.com?subject=Readiness Audit Inquiry" class="btn btn-ghost">Get Started</a></div>
-    <div class="tier-card featured"><div class="tier-tag">Tier 02 · Most Popular</div><h3>Readiness Package</h3><div class="tier-price">$1,500</div><div class="tier-period">One-time · 2–3 weeks</div><p class="tier-desc">Full solution for businesses preparing for cyber insurance or struggling with renewal requirements.</p><ul class="tier-list"><li>Everything in Tier 1</li><li>Full risk assessment</li><li>3 core policy documents (AUP, IRP, Data Handling)</li><li>Vendor checklist & insurance app support</li><li>Security awareness 1-pager</li><li>Executive summary for insurer</li><li>2 follow-up email Q&A sessions</li></ul><a href="mailto:support@technicalterminator.com?subject=Readiness Package Inquiry" class="btn">Get Started</a></div>
-    <div class="tier-card"><div class="tier-tag">Tier 03</div><h3>Retainer</h3><div class="tier-price">$800<span style="font-size:1.5rem">/mo</span></div><div class="tier-period">Monthly · 3-month minimum</div><p class="tier-desc">Ongoing GRC support to stay audit‑ready and have a consultant year‑round.</p><ul class="tier-list"><li>Monthly compliance check-in</li><li>Policy reviews & updates</li><li>Vendor risk reviews (2/month)</li><li>Incident response maintenance</li><li>AI governance updates</li><li>Annual renewal prep included</li></ul><a href="mailto:support@technicalterminator.com?subject=Retainer Inquiry" class="btn btn-ghost">Get Started</a></div>
+    <div class="tier-card"><div class="tier-tag">Tier 01</div><h3>Readiness Audit</h3><div class="tier-price">$500</div><div class="tier-period">One-time · 5–7 business days</div><p class="tier-desc">A snapshot of where you stand. Perfect for first-time applicants or renewal prep.</p><ul class="tier-list"><li>1-hour discovery call + questionnaire</li><li>Gap analysis vs underwriter requirements</li><li>Review of existing policies</li><li>Written findings + risk ratings</li><li>Prioritized action list</li><li>30-min debrief call</li></ul><a href="#contact" class="btn btn-ghost" onclick="document.getElementById('cf-interest').value='readiness-audit'">Get Started</a></div>
+    <div class="tier-card featured"><div class="tier-tag">Tier 02 · Most Popular</div><h3>Readiness Package</h3><div class="tier-price">$1,500</div><div class="tier-period">One-time · 2–3 weeks</div><p class="tier-desc">Full solution for businesses preparing for cyber insurance or struggling with renewal requirements.</p><ul class="tier-list"><li>Everything in Tier 1</li><li>Full risk assessment</li><li>3 core policy documents (AUP, IRP, Data Handling)</li><li>Vendor checklist & insurance app support</li><li>Security awareness 1-pager</li><li>Executive summary for insurer</li><li>2 follow-up email Q&A sessions</li></ul><a href="#contact" class="btn" onclick="document.getElementById('cf-interest').value='readiness-package'">Get Started</a></div>
+    <div class="tier-card"><div class="tier-tag">Tier 03</div><h3>Retainer</h3><div class="tier-price">$800<span style="font-size:1.5rem">/mo</span></div><div class="tier-period">Monthly · 3-month minimum</div><p class="tier-desc">Ongoing GRC support to stay audit‑ready and have a consultant year‑round.</p><ul class="tier-list"><li>Monthly compliance check-in</li><li>Policy reviews & updates</li><li>Vendor risk reviews (2/month)</li><li>Incident response maintenance</li><li>AI governance updates</li><li>Annual renewal prep included</li></ul><a href="#contact" class="btn btn-ghost" onclick="document.getElementById('cf-interest').value='retainer'">Get Started</a></div>
   </div>
   <div style="margin-top:3rem;"><p class="section-label">Add-On Services</p><div class="addon-grid"><div class="addon"><div><div class="addon-name">Additional Policy Document</div><div class="addon-sub">BCP, BYOD, Remote Work, etc.</div></div><div class="addon-price">$200 / policy</div></div><div class="addon"><div><div class="addon-name">Security Awareness Training</div><div class="addon-sub">Custom 1-hr session (virtual)</div></div><div class="addon-price">$350</div></div><div class="addon"><div><div class="addon-name">AI Use Policy Package</div><div class="addon-sub">AI governance + employee guidance</div></div><div class="addon-price">$300</div></div><div class="addon"><div><div class="addon-name">Claim Denial Review</div><div class="addon-sub">Review and identify fixes</div></div><div class="addon-price">$400</div></div></div></div>
 </section>
@@ -973,6 +1058,7 @@
     <button class="doc-tab" data-doc="irp">Incident Response</button>
     <button class="doc-tab" data-doc="aup">Acceptable Use</button>
     <button class="doc-tab" data-doc="exec">Executive Summary</button>
+    <button class="doc-tab" data-doc="free">Free Resources</button>
   </div>
 
   <!-- Panel 1: Gap Analysis -->
@@ -1022,19 +1108,100 @@
     </div>
   </div>
 
+  <!-- Panel 5: Free Resources -->
+  <div class="doc-panel" id="doc-free">
+    <div class="doc-card">
+      <div class="doc-header">
+        <div class="doc-meta">
+          <span class="doc-badge">Free Download · 2026 Edition</span>
+          <div class="doc-title">The Adjuster's Checklist</div>
+          <div class="doc-client">12 Things I Looked for Before Approving a Cyber Insurance Claim</div>
+        </div>
+        <div class="doc-version">7 pages · PDF · No signup required</div>
+      </div>
+      <div class="doc-body">
+        <div class="doc-section">
+          <div class="doc-section-title">What's Inside</div>
+          <p style="font-size:0.85rem; color:rgba(245,245,240,0.75); margin-bottom:1rem;">Built around the specific questions an adjuster asks when your claim lands on their desk — not a generic security framework. Go through it with your IT lead or office manager and check only what's fully in place.</p>
+          <ul class="doc-ul">
+            <li>Section 01 — Access Controls &amp; Authentication</li>
+            <li>Section 02 — Incident Response Preparedness</li>
+            <li>Section 03 — Backup &amp; Recovery</li>
+            <li>Section 04 — Email &amp; Network Security</li>
+            <li>Section 05 — Employee Training &amp; Awareness</li>
+            <li>Section 06 — Vendor &amp; Third-Party Risk</li>
+            <li>Section 07 — Documentation &amp; Policy Records</li>
+          </ul>
+        </div>
+        <div class="doc-highlight">
+          Any unchecked item is a potential gap your insurer may flag during a claim investigation. This checklist tells you where to look before they do.
+        </div>
+        <div style="margin-top:1.5rem;">
+          <a href="/resources/TTAdjusterChecklist2026.pdf" download class="btn" style="display:inline-block;">Download Free Checklist (PDF)</a>
+        </div>
+      </div>
+      <div class="doc-watermark-bar" style="padding:0.75rem 1.5rem; background:rgba(200,245,90,0.05); font-size:0.65rem;">TECHNICAL TERMINATOR LLC · FREE FOR INTERNAL BUSINESS USE · support@technicalterminator.com</div>
+    </div>
+  </div>
+
   <div class="resource-cta">
     <div><strong>Ready to see what your documentation would look like?</strong><p>Every deliverable is written for your specific business, insurer, and risk profile — not a template. Book a free discovery call and we'll walk through what your engagement would produce.</p></div>
-    <a href="mailto:support@technicalterminator.com?subject=Free Discovery Call" class="btn">Book Free Call</a>
+    <a href="#contact" class="btn">Book Free Call</a>
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <p class="section-label">Ready to Start</p>
   <h2>Stop Guessing.<br><em>Start Qualifying.</em></h2>
-  <p>Book a free 30-minute discovery call. No obligation. Just answers.<br>Questions first? Email support@technicalterminator.com</p>
-  <a href="mailto:support@technicalterminator.com?subject=Free Discovery Call" class="btn">Book Free Discovery Call</a>
-  &nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/sydneydawson35" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">View LinkedIn Profile</a>
+  <p style="color:rgba(245,245,240,0.6); max-width:480px; margin:0 auto 2.5rem;">No long intake forms. Just tell me what's going on and we'll figure out if it's a fit — free, no obligation.</p>
+
+  <div class="contact-form-wrap">
+    <form
+      action="https://formspree.io/f/maqgbkdo"
+      method="POST"
+      class="contact-form"
+      id="contact-form"
+    >
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-name">Your Name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="cf-company">Company</label>
+          <input type="text" id="cf-company" name="company" placeholder="Acme LLC" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-email">Email Address</label>
+          <input type="email" id="cf-email" name="email" placeholder="you@company.com" required />
+        </div>
+        <div class="form-group">
+          <label for="cf-interest">I'm interested in…</label>
+          <select id="cf-interest" name="interest">
+            <option value="">Select a service</option>
+            <option value="readiness-audit">Readiness Audit ($500)</option>
+            <option value="readiness-package">Readiness Package ($1,500)</option>
+            <option value="retainer">Monthly Retainer ($800/mo)</option>
+            <option value="not-sure">Not sure yet — just exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cf-message">What's going on?</label>
+        <textarea id="cf-message" name="message" rows="4" placeholder="Tell me a bit about your situation — upcoming renewal, recent incident, first time buying cyber insurance, etc."></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="New inquiry — Technical Terminator" />
+      <input type="text" name="_gotcha" style="display:none" />
+      <button type="submit" class="btn" style="width:100%; margin-top:0.5rem;">Send Message</button>
+    </form>
+    <div id="form-success" style="display:none; padding:2rem; text-align:center;">
+      <p style="font-family:var(--mono); font-size:0.8rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase;">Message received.</p>
+      <p style="margin-top:0.75rem; color:rgba(245,245,240,0.7); font-size:0.9rem;">I'll be in touch within one business day. In the meantime, grab the free <a href="/resources/TTAdjusterChecklist2026.pdf" download style="color:var(--accent);">Adjuster's Checklist</a> if you haven't already.</p>
+    </div>
+    <p style="margin-top:1.25rem; font-family:var(--mono); font-size:0.65rem; color:var(--muted); letter-spacing:0.06em;">Prefer email? <a href="mailto:support@technicalterminator.com" style="color:var(--accent);">support@technicalterminator.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/sydneydawson35" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">LinkedIn</a></p>
+  </div>
 </section>
 
 <footer>
@@ -1050,7 +1217,8 @@
       gap: document.getElementById('doc-gap'),
       irp: document.getElementById('doc-irp'),
       aup: document.getElementById('doc-aup'),
-      exec: document.getElementById('doc-exec')
+      exec: document.getElementById('doc-exec'),
+      free: document.getElementById('doc-free')
     };
 
     function activateTab(tabId) {
@@ -1095,6 +1263,38 @@
     document.addEventListener('DOMContentLoaded', initTabs);
   } else {
     initTabs();
+  }
+
+  // Formspree AJAX submission
+  const contactForm = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          submitBtn.textContent = 'Something went wrong — try again';
+          submitBtn.disabled = false;
+        }
+      } catch {
+        submitBtn.textContent = 'Something went wrong — try again';
+        submitBtn.disabled = false;
+      }
+    });
   }
 </script>
 </body>
